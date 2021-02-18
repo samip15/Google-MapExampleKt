@@ -2,7 +2,8 @@ plugins {
     id 'com.android.application'
     id 'kotlin-android'
 }
-
+def API_KEY = '"' + ApiKey + '"'?: '"Api key not found"'
+def STRING = 'String'
 android {
     compileSdkVersion 29
     buildToolsVersion "29.0.3"
@@ -13,8 +14,10 @@ android {
         targetSdkVersion 29
         versionCode 1
         versionName "1.0"
-
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        each {type->
+            type.buildConfigField STRING , 'ApiKey' , API_KEY
+        }
     }
 
     buildTypes {
